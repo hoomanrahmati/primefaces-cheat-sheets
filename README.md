@@ -9,3 +9,15 @@ PrimeFaces.ajax.Request.handle({
     }
 });
 ```
+
+# to have fun
+
+first of all you need to add some extra code
+
+```
+PrimeFaces.ajax.Request.handle({
+    oncomplete: function(xhr, status, args) {
+        console.log("Full response:", xhr.responseText);
+    }
+});
+```
