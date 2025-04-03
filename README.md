@@ -9,11 +9,3 @@ PrimeFaces.ajax.Request.handle({
     }
 });
 ```
-
-```
-PrimeFaces.ajax.Request.handle({
-    oncomplete: function(xhr, status, args) {
-        console.log("Full response:", xhr.responseText);
-    }
-});
-```
