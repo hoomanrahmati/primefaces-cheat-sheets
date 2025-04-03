@@ -33,3 +33,33 @@ PrimeFaces.ajax.Request.handle({
 - hello
 
 this worked **fine** form me!
+
+# remoteCommand- pass parameter from javascript to java
+
+**remoteCommand**:
+
+- name: javascript file name
+- action: java action which runs after calling javascipt file
+
+description: parameters can pass with a list of name value objects as below.
+
+```
+(*.xhtml)
+<p:remoteCommand name="ajaxFunc"
+                 action="#{sampleFile.handleAjaxRequest()}" />
+
+<p:commandButton value="test remoteCommand"
+                 process="@this"
+                 onclick="ajaxFunc([{name:'myParam', value:'myValue'}])"/>
+
+(*.java)
+public void handleAjaxRequest(){
+    Map<String, String> params= FacesContext
+                  .getCurrentInstance()
+                  .getExternalContext()
+                  .getRequestParameterMap();
+
+    System.out.println(params.get("myParam"));
+}
+
+```
