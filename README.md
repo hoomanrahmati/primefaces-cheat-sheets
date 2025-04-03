@@ -21,3 +21,15 @@ PrimeFaces.ajax.Request.handle({
     }
 });
 ```
+
+# Performance:
+
+1. Limit processed components with process
+
+2. Use partial updates with update
+
+3. Set async: false only when absolutely necessary
+
+- hello
+
+this worked **fine** form me!
