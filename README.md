@@ -83,8 +83,8 @@ buffer returns **list**
 
 ```
 Observable.interval(100, TimeUnit.MILLISECONDS)
-        .buffer(5)
-        .subscribe(v-> System.out.println(v));
+    .buffer(5)
+    .subscribe(v-> System.out.println(v));
 ```
 
 - output
@@ -100,17 +100,46 @@ Observable.interval(100, TimeUnit.MILLISECONDS)
 ...
 ```
 
+**based on TimeUnit**
+
+```
+Observable.interval(100, TimeUnit.MILLISECONDS)
+    .buffer(1, TimeUnit.SECONDS)
+    .subscribe(v-> System.out.println(v));
+```
+
+- output:
+
+```
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[10, 11, 12, 13, 14, 15, 16, 17, 18]
+[19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+...
+```
+
+**based on another observable**
+
+```
+Observable<Long> timer = Observable.interval(1000, TimeUnit.MILLISECONDS);
+
+Observable.interval(100, TimeUnit.MILLISECONDS)
+    .buffer(timer)
+    .subscribe(v-> System.out.println(v));
+```
+
+the output is as same as previous one
+
 # Window
 
 buffer returns **list** but window returns **Observable**
 
 ```
 Observable.interval(100, TimeUnit.MILLISECONDS)
-                .window(10)
-                .subscribe(v-> {
-                    System.out.println();
-                    v.subscribe(System.out::print);
-                });
+    .window(10)
+    .subscribe(v-> {
+        System.out.println();
+        v.subscribe(System.out::print);
+    });
 ```
 
 - output
